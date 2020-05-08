@@ -1,10 +1,11 @@
 import React from 'react'
-import { Col } from 'reactstrap'
-import logo from './logo.svg'
+import { Switch, Route } from 'react-router-dom'
 import NavBarComponent from './components/Navbar'
 import Header from './components/Header'
-import Preview from './components/Preview'
-import './App.css'
+
+import Home from './Pages/Home'
+import Contact from './Pages/Contact'
+import Ship from './Pages/Ship'
 
 function App() {
   return (
@@ -12,7 +13,11 @@ function App() {
       <Header>
         <NavBarComponent />
       </Header>
-      <Preview />
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route path='/ship' component={Ship} />
+        <Route path='/contact' component={Contact} />
+      </Switch>
     </div>
   )
 }

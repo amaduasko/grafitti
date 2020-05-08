@@ -1,0 +1,23 @@
+.slider-item-hover {
+  display: none;
+  button {
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+.slider-item-container {
+  &:hover {
+    cursor: pointer;
+    .slider-item-hover {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

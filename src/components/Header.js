@@ -27,10 +27,10 @@ const SelectBar = styled.select`
 
 const HeaderSelect = ({ children }) => (
   <SelectBar>
-    <option>Санкт-Петербург</option>
-    <option>Москва</option>
-    <option>Сочи</option>
-    <option>Казан</option>
+    <option style={{ backgroundColor: '#b1b1b1' }}>Санкт-Петербург</option>
+    <option style={{ backgroundColor: '#b1b1b1' }}>Москва</option>
+    <option style={{ backgroundColor: '#b1b1b1' }}>Сочи</option>
+    <option style={{ backgroundColor: '#b1b1b1' }}>Казан</option>
   </SelectBar>
 )
 
@@ -57,6 +57,9 @@ const SocialIcon = styled.a`
   &:last-child {
     margin-right: 0;
   }
+  @media only screen and (max-width: 340px) {
+    margin-right: 0;
+  }
 `
 const HeaderEmail = styled.a`
   color: #fff;
@@ -68,6 +71,9 @@ const HeaderEmail = styled.a`
   &:hover {
     color: #f7087a;
     text-decoration: none;
+  }
+  @media only screen and (max-width: 576px) {
+    display: none;
   }
 `
 const HeaderInfo = styled.div`
@@ -81,11 +87,11 @@ const Header = ({ children }) => (
     <HeaderInfo>
       <Container>
         <Row className='ml-0 mr-0'>
-          <Col>
+          <Col className='pl-0'>
             {' '}
             <HeaderSelect />
           </Col>
-          <SocialInfoContainer className='d-flex '>
+          <SocialInfoContainer className='d-flex pr-0 '>
             <HeaderEmail href='mailto:zakaz@печатьнахолсте.рф'>
               zakaz@печатьнахолсте.рф
             </HeaderEmail>

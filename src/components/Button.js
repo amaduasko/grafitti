@@ -14,6 +14,13 @@ const Btn = styled.button`
   text-transform: uppercase;
   margin-right: 1rem;
   margin-left: 1rem;
+  &:focus {
+    outline: none;
+  }
+  @media only screen and (max-width: 1199px) and (min-width: 1024px) {
+    padding: 0.5rem 2rem;
+    margin-left: 0;
+  }
 `
 
 const Button = ({ children, ...props }) => <Btn {...props}>{children}</Btn>

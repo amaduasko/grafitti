@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 import logo from '../images/logo.png'
 import tel from '../images/tel.png'
 import basket from '../images/basket.png'
@@ -14,17 +13,24 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
 } from 'reactstrap'
 
 const Logo = styled.img``
 
 const Link = styled(NavLink)`
-  color: #1d354a !important;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  color: #1d354a;
   font-size: 14px;
   font-weight: 700;
   line-height: 24px;
   text-transform: uppercase;
+  margin: 0 1rem;
+  &:hover {
+    text-decoration: none;
+    color: #f7087a;
+  }
 `
 const CallBackContainer = styled.div`
   display: flex;
@@ -36,10 +42,19 @@ const CallBackContainer = styled.div`
 const CallBackInfo = styled.div`
   margin-left: 1rem;
   margin-right: 2rem;
+  @media only screen and (max-width: 1199px) and (min-width: 1024px) {
+    margin-right: 0;
+  }
 `
 
 const PhoneIconContainer = styled.div`
   margin-left: 3rem;
+  @media only screen and (max-width: 1199px) and (min-width: 1024px) {
+    margin-left: 0;
+  }
+  @media only screen and (max-width: 340px) {
+    margin-left: 0;
+  }
 `
 
 const PhoneIcon = styled.a`
@@ -54,6 +69,12 @@ const PhoneNumber = styled.a`
   &:hover {
     color: #f7087a;
     text-decoration: none;
+  }
+  @media only screen and (max-width: 1199px) and (min-width: 1024px) {
+    font-size: 14px;
+  }
+  @media only screen and (max-width: 576px) {
+    font-size: 15px;
   }
 `
 
@@ -91,10 +112,26 @@ const BasketToolTip = styled.span`
   right: 5px;v
 `
 
+const NavBrand = styled(NavbarBrand)`
+  @media only screen and (max-width: 340px) {
+    width: 150px;
+  }
+`
+
+const Btn = styled(Button)`
+  @media only screen and (max-width: 1024px) {
+    display: none;
+  }
+`
+
 const Basket = styled.img``
 
 const NavBarComponent = (props) => {
   const [isOpen, setIsOpen] = useState(false)
+  const ativeStyle = {
+    borderBottom: '5px solid #f7087a',
+    paddingTop: '5px',
+  }
 
   const itemCount = 0
 
@@ -102,26 +139,35 @@ const NavBarComponent = (props) => {
 
   return (
     <Container>
-      <Navbar dark expand='md'>
-        <NavbarBrand href='/'>
+      <Navbar dark expand='lg' className='p-0 '>
+        <NavBrand href='/'>
           {' '}
-          <Logo src={logo} alt='logo' />{' '}
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+          <Logo src={logo} style={{ width: '100%' }} alt='logo' />{' '}
+        </NavBrand>
+        <NavbarToggler
+          style={{ backgroundColor: '#f7087a' }}
+          onClick={toggle}
+        />
         <Collapse isOpen={isOpen} navbar>
           <Nav navbar>
             <NavItem>
-              <Link href='/'>Главная</Link>
+              <Link exact to='/' activeStyle={ativeStyle}>
+                Главная
+              </Link>
             </NavItem>
             <NavItem>
-              <Link href='/'>Доска</Link>
+              <Link to='/ship' activeStyle={ativeStyle}>
+                Доска
+              </Link>
             </NavItem>
             <NavItem>
-              <Link href='/'>Контакты</Link>
+              <Link to='/contact' activeStyle={ativeStyle}>
+                Контакты
+              </Link>
             </NavItem>
           </Nav>
-          <Nav className='ml-auto'>
-            <Button>Заказать</Button>
+          <Nav className='ml-auto flex-nowrap'>
+            <Btn>Заказать</Btn>
             <CallBackContainer>
               <PhoneIconContainer>
                 <PhoneIcon href='tel:8800707531'>
